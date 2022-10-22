@@ -25,6 +25,18 @@ CREATE TABLE `collection_product` (
   CONSTRAINT `collection_product_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
+CREATE TABLE `order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product` int(11) DEFAULT NULL,
+  `user` int(11) DEFAULT NULL,
+  `date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user` (`user`),
+  KEY `product` (`product`),
+  CONSTRAINT `order_ibfk_1` FOREIGN KEY (`user`) REFERENCES `user` (`id`),
+  CONSTRAINT `order_ibfk_2` FOREIGN KEY (`product`) REFERENCES `product` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
 CREATE TABLE `product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
@@ -52,6 +64,18 @@ CREATE TABLE `tag_product` (
   CONSTRAINT `tag_product_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `address1` varchar(255) NOT NULL,
+  `address2` varchar(255) DEFAULT NULL,
+  `zip` int(11) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `country` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
 INSERT INTO `collection` (`id`, `title`, `description`) VALUES
 (1, 'Apple', 'Apple c\'est cool');
 INSERT INTO `collection` (`id`, `title`, `description`) VALUES
@@ -68,6 +92,10 @@ INSERT INTO `collection_product` (`id`, `collection_id`, `product_id`) VALUES
 (4, 2, 2),
 (5, 1, 3),
 (6, 2, 3);
+
+INSERT INTO `order` (`id`, `product`, `user`, `date`) VALUES
+(1, 2, 1, '2020-09-09 20:00:00');
+
 
 INSERT INTO `product` (`id`, `title`, `sku`, `description`, `price`, `quantity`) VALUES
 (1, 'iPhone 14', 'iphone-14', 'Un super iphone 14', 1000.99, 100);
@@ -93,6 +121,12 @@ INSERT INTO `tag_product` (`id`, `tag_id`, `product_id`) VALUES
 (5, 1, 3),
 (6, 2, 3),
 (7, 3, 3);
+
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `address1`, `address2`, `zip`, `city`, `country`) VALUES
+(1, 'Pierre', 'Grimaud', '1 rue du Paradis', 'Boite 30', 75001, 'PARIS', 'FRANCE');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `address1`, `address2`, `zip`, `city`, `country`) VALUES
+(2, 'John', 'Doe', '1 place de la République', NULL, 75001, 'PARIS', 'FRANCE');
+
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
