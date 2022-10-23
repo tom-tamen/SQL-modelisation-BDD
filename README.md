@@ -54,7 +54,20 @@ ORDER BY
 ```
 
 Afficher l’`attribute` avec le meilleur score de chaque `contract`
-
+```sql
+SELECT
+    MAX(`attribute`.score) AS best_score,
+    `attribute_category`.name AS attribute_name,
+    `contract`.name AS contract_name
+FROM
+    `contract`
+    JOIN `attribute_category` ON `contract`.id = `attribute_category`.contract_id
+    JOIN `attribute` ON `attribute_category`.id = `attribute`.attribute_category_id
+GROUP BY
+    `contract`.id
+ORDER BY
+    best_score;
+```
 Afficher les `asset` qui ont un rank supérieur à 10, ordonnés par rank ascendant
 
 Afficher le score moyen des `asset` du `contract` Last Dragons
