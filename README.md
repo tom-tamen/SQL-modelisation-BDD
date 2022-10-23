@@ -105,6 +105,15 @@ GROUP BY
     `contract`.id;
 ```
 Afficher tous les `attribute` de l’`asset` qui porte le nom ‘IMXToadz #315’
-
+```sql
+SELECT
+    `attribute`.`value`
+FROM
+    `asset`
+    JOIN `attribute_asset` ON `asset`.id = `attribute_asset`.asset_id
+    JOIN `attribute` ON `attribute_asset`.attribute_id = `attribute`.id
+WHERE
+    `asset`.name = "IMXToadz #315";
+```
 Calculer le nombre de `attribute_category` par `contract`
  
