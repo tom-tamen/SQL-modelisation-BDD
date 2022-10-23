@@ -10,7 +10,19 @@ FROM
     `statistics_general`;
 ```
 Afficher le `contract` qui a le moins de caractères dans le nom
-
+```sql
+SELECT
+    MIN(LENGTH(`contract`.name)) AS lenght,
+    `contract`.name
+FROM
+    `contract`
+GROUP BY
+    `contract`.id
+ORDER BY
+    lenght
+LIMIT
+    1;
+```
 Afficher le `contract` avec le plus de `attribute_category` différents
 
 Afficher l’`asset` avec le meilleur score pour chaque `contract`
