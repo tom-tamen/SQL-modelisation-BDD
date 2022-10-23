@@ -117,3 +117,13 @@ WHERE
 ```
 Calculer le nombre de `attribute_category` par `contract`
  
+```sql
+SELECT
+    COUNT(`attribute_category`.contract_id) AS number_of_attribute_category,
+    `contract`.name
+FROM
+    `contract`
+    JOIN `attribute_category` ON `attribute_category`.contract_id = `contract`.id
+GROUP BY
+    `contract`.id;
+```
