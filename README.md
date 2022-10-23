@@ -24,7 +24,20 @@ LIMIT
     1;
 ```
 Afficher le `contract` avec le plus de `attribute_category` différents
-
+```sql
+SELECT
+    COUNT(`contract`.id) AS n_name,
+    `contract`.name
+FROM
+    `contract`
+    INNER JOIN `attribute_category` ON `attribute_category`.contract_id = `contract`.id
+GROUP BY
+    `contract`.id
+ORDER BY
+    n_name DESC
+LIMIT
+    1;
+```
 Afficher l’`asset` avec le meilleur score pour chaque `contract`
 
 Afficher l’`attribute` avec le meilleur score de chaque `contract`
