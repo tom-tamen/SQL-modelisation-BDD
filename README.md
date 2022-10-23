@@ -39,6 +39,19 @@ LIMIT
     1;
 ```
 Afficher l’`asset` avec le meilleur score pour chaque `contract`
+```sql
+SELECT
+    MAX(`asset`.score) AS best_score,
+    `asset`.name AS asset_name,
+    `contract`.name AS contract_name
+FROM
+    `asset`
+    INNER JOIN `contract` ON `contract`.id = `asset`.contract_id
+GROUP BY
+    `contract`.id
+ORDER BY
+    best_score;
+```
 
 Afficher l’`attribute` avec le meilleur score de chaque `contract`
 
