@@ -91,7 +91,19 @@ WHERE
 ```
 
 Afficher la date de la première vente d’un `asset` du `contract` IMX Apes
-
+```sql
+SELECT
+    MAX(`order`.`date`) AS older,
+    `asset`.name
+FROM
+    `order`
+    JOIN `asset` ON `asset`.id = `order`.asset_id
+    JOIN `contract` ON `contract`.id = `asset`.contract_id
+WHERE
+    `contract`.name = 'IMX Apes'
+GROUP BY
+    `contract`.id;
+```
 Afficher tous les `attribute` de l’`asset` qui porte le nom ‘IMXToadz #315’
 
 Calculer le nombre de `attribute_category` par `contract`
