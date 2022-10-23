@@ -69,7 +69,16 @@ ORDER BY
     best_score;
 ```
 Afficher les `asset` qui ont un rank supérieur à 10, ordonnés par rank ascendant
-
+```sql
+SELECT
+    *
+FROM
+    `asset`
+WHERE
+    `asset`.rank > 10
+ORDER BY
+    `asset`.rank ASC;
+```
 Afficher le score moyen des `asset` du `contract` Last Dragons
 
 Afficher la date de la première vente d’un `asset` du `contract` IMX Apes
