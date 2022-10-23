@@ -80,6 +80,15 @@ ORDER BY
     `asset`.rank ASC;
 ```
 Afficher le score moyen des `asset` du `contract` Last Dragons
+```sql
+SELECT
+    AVG(`asset`.score) AS average
+FROM
+    `asset`
+    JOIN `contract` ON `contract`.id = `asset`.contract_id
+WHERE
+    `contract`.name = 'Last Dragons';
+```
 
 Afficher la date de la première vente d’un `asset` du `contract` IMX Apes
 
